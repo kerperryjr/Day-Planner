@@ -6,8 +6,10 @@ document.querySelector(".container-lg").addEventListener("click", function (even
   if (event.target.matches(".btn")) {
     console.log(event.target)
     console.log(event.target.dataset.time)
-    console.log(event.target.previousElementSibling)
-
+    console.log(event.target.previousElementSibling.value)
+    let time = event.target.dataset.time ;
+    let textAreaValue = event.target.previousElementSibling.value;
+    localStorage.setItem(time, textAreaValue)
   }
 
   else if (event.target.matches(".fa-save")) {
@@ -19,11 +21,13 @@ document.querySelector(".container-lg").addEventListener("click", function (even
   let plans = [".btn", ".fa-save"]
 
 //storage to store hourly task that users insert
-  const button = localStorage.getItem(".plans");
-  localStorage.setItem(".plans", JSON.stringify(".plans"))
+  // const button = localStorage.getItem(".plans");
   event.preventDefault();
 })
 
+
+let currentTime = dayjs().hour()
+console.log(currentTime)
 if (currentTime) {
 
 //if current hour (green) previous hour(s) turn (grey) future hours are blue
@@ -33,6 +37,9 @@ if (currentTime) {
 
 
 document.querySelectorAll("textarea")[0].value = localStorage.getItem("9")
+document.querySelectorAll("textarea")[1].value = localStorage.getItem("10")
+document.querySelectorAll("textarea")[2].value = localStorage.getItem("11")
+document.querySelectorAll("textarea")[3].value = localStorage.getItem("12")
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
